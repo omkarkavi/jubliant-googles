@@ -175,9 +175,9 @@ void Widget::spriteMovement()
 	qreal movementDirection{};
 	directionWidget->setRotation (0);
 	bool didSth = false;
-	//	QTransform initPos = aThingyToMove->sceneTransform();
+    //QTransform initPos = aThingyToMove->sceneTransform();
 
-	//	qDebug() << "current movement get : " << currentMovement.up << currentMovement.down << currentMovement.right << currentMovement.left;
+        qDebug() << "current movement get : " << currentMovement.up << currentMovement.down << currentMovement.right << currentMovement.left;
 	if (currentMovement.up)
 	{
                 qDebug() << "UP";
@@ -314,9 +314,9 @@ void Widget::spriteMovement()
 void Widget::spriteMovement_M2()
 {
 	bool didSth = false;
-	//	QTransform initPos = aThingyToMove->sceneTransform();
+    //	QTransform initPos = aThingyToMove->sceneTransform();
 
-	//	qDebug() << "current movement get : " << currentMovement.up << currentMovement.down << currentMovement.right << currentMovement.left;
+    //	qDebug() << "current movement get : " << currentMovement.up << currentMovement.down << currentMovement.right << currentMovement.left;
 	if (currentMovement.up)
 	{
                 qDebug() << "UP";
@@ -383,29 +383,29 @@ void Widget::spriteMovement_M2()
 	}
 	if (currentMovement.clock)
 	{
-		//		qDebug() << "CLOCK";
-		//		aThingyToMove->setTransform (aThingyToMove->sceneTransform().rotate (1));
+        //		qDebug() << "CLOCK";
+        //		aThingyToMove->setTransform (aThingyToMove->sceneTransform().rotate (1));
 		aThingyToMove->setRotation (aThingyToMove->rotation() + 1);
-		//	aThingyToMove->sceneTransform();
-		//				aThingyToMove->setTransform (aThingyToMove->transform().rotate (1));
+        //	aThingyToMove->sceneTransform();
+        //				aThingyToMove->setTransform (aThingyToMove->transform().rotate (1));
 
-		//		qDebug() << aThingyToMove->transformOriginPoint() << aThingyToMove->sceneTransform();
+        //		qDebug() << aThingyToMove->transformOriginPoint() << aThingyToMove->sceneTransform();
 
-		//		leftArrow->setBrush (Qt::green);
+        //		leftArrow->setBrush (Qt::green);
 		didSth = true;
 	}
 	else
 	{
-		//		leftArrow->setBrush (Qt::gray);
+        //		leftArrow->setBrush (Qt::gray);
 	}
 	if (currentMovement.anticlock)
 	{
-		//		qDebug() << "ANTICLOCK";
-		//		aThingyToMove->setTransform (aThingyToMove->sceneTransform().rotate (-1));
+        //		qDebug() << "ANTICLOCK";
+        //		aThingyToMove->setTransform (aThingyToMove->sceneTransform().rotate (-1));
 		aThingyToMove->setRotation (aThingyToMove->rotation() - 1);
-		//		aThingyToMove->setTransform (aThingyToMove->transform().rotate (-1));
+        //		aThingyToMove->setTransform (aThingyToMove->transform().rotate (-1));
 
-		//		leftArrow->setBrush (Qt::green);
+        //		leftArrow->setBrush (Qt::green);
 		didSth = true;
 	}
 	else
@@ -476,8 +476,8 @@ void Widget::addEnemies()
         // int n = QRandomGenerator::global()->bounded (10);
 
   //       enemyList[n]->setVisible (true);
-        int x = QRandomGenerator::global()->bounded (xl, xr);
-        int y = QRandomGenerator::global()->bounded (yu, yd);
+        int x = QRandomGenerator::global()->bounded (xl, xr);   // Changed the logic to add enemies, earlier code was just hiding and showing the enemies as respawning
+        int y = QRandomGenerator::global()->bounded (yu, yd);   // Now the code will remove the enemy from the scene and after respawning timer is set will create a new enemy object
 
         QGraphicsEllipseItem *a = new QGraphicsEllipseItem (x, y, 10, 10);
         a->setPen (QPen (Qt::black));
@@ -506,20 +506,11 @@ void Widget::addFriends()
         a->setData (0, QStringLiteral ("Friend"));
         a->setData (1, QStringLiteral ("Safe"));
         scene->addItem (a);
-        //friendList << a;
+        friendList << a;
 
 
     }
-    // enemyRespawnTimer.start (1000);
-    // connect (&enemyRespawnTimer, &QTimer::timeout, this,
-    //         [this] ()
-    //         {
-    //             int n = QRandomGenerator::global()->bounded (10);
-    //         if(friendList[n]->isVisible())
-    //             friendList[n]->setVisible (false);
-    //         else
-    //              friendList[n]->setVisible (true);
-    //         });
+
 }
 
 
